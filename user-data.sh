@@ -29,3 +29,9 @@ wget https://amazoncloudwatch-agent.s3.amazonaws.com/redhat/amd64/latest/amazon-
 
 rpm -U ./amazon-cloudwatch-agent.rpm
 
+# Start CloudWatch Agent using custom configuration
+/opt/aws/amazon-cloudwatch-agent/bin/amazon-cloudwatch-agent-ctl \
+  -a fetch-config \
+  -m ec2 \
+  -c file:/opt/aws/amazon-cloudwatch-agent/etc/amazon-cloudwatch-agent.json \
+  -s
