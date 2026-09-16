@@ -1,0 +1,10 @@
+## CloudWatch Agent Configuration
+
+The `cloudwatch-agent.json` file configures the Amazon CloudWatch Agent on RHEL EC2 instances to collect memory utilization metrics.
+
+- Collects `mem_used_percent`
+- Collection interval: 60 seconds
+- Publishes metrics to the `CWAgent` namespace
+- Adds the Auto Scaling Group name as a metric dimension
+- Runs the agent as `root`
+
