@@ -1,0 +1,44 @@
+/*
+  Target Tracking Auto Scaling Policy
+  -----------------------------------
+  Purpose:
+  This policy configures AWS Auto Scaling to maintain
+  average EC2 memory utilization around 70%.
+
+  Metric:
+  mem_used_percent
+
+  Namespace:
+  CWAgent
+
+  The metric is collected by the Amazon CloudWatch Agent
+  installed on the RHEL EC2 instances.
+
+  Scaling behavior:
+  - If average memory utilization increases above the target,
+    the Auto Scaling Group can launch additional instances.
+  - If average memory utilization decreases below the target,
+    the Auto Scaling Group can reduce the number of instances.
+
+  Auto Scaling Group:
+  my-ASG
+*/
+
+{
+  "TargetValue": 70.0,
+
+  "CustomizedMetricSpecification": {
+    "MetricName": "mem_used_percent",
+
+    "Namespace": "CWAgent",
+
+    "Statistic": "Average",
+
+    "Dimensions": [
+      {
+        "Name": "AutoScalingGroupName",
+        "Value": "my-ASG"
+      }
+    ]
+  }
+}
